@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[colorinlistoftodos]{todonotes}
+\pagestyle{empty}
+
+\title{Stable Matching Report}
+\author{Author 1 and Author 2}
+
+\begin{document}
+  \maketitle
+
+  \section{Results}
+
+  \todo[inline]{Briefly comment the results, did the script say all your solutions were correct? Approximately how long time does it take for the program to run on the largest input? What takes the majority of the time?}
+    Yes, the script said all my solutions were correct! It took 2.2 sec to run the program with the largest input. The processing, i.e reading the data from the file and creating a list, took 0.73 sec, and the Stable Marriage Algorithm took 1.42. However, in those 1.42 I also create the preference lists (inverted for companies) based on the input. The actual algorithm that does the matching after the preference lists only took 0.05 sec. Therefore the processing of data and creating the preference lists takes the majority of the time. 
+
+  \section{Implementation details}
+    I created a way to read from an input. The input is read as individual elements, and are split into lines that matches the number of rows. After that, I run the stable matching function that also creates the preference lists based on the input read. For companies an inverted list is created instead. The algorithm checks if the students prefered companie is free, if it is, it creates a match. If not, it checks if the company prefers the current student over its current matched student and if so, it creates a new match. If neither is true the student is put back into the list. This is done untill no students are left unmatched.
+    
+
+  \todo[inline]{How did you implement the solution? Which data structures were used? Which modifications to these data structures were used? What is the overall running time? Why?}
+    I use two lists, students_free and companies_free to show free students and companies. If company's index is -1 it means it's free, otherwise it has the index of the students it's matched to as element. 
+    To show matches I have another list where the index is the company and the element is the student the company is matched to. 
+    The overall run time should be O(n^2), it loops through students untill everyone has a match and there are equal number of stundets as companies so it will happen 
+\end{document}

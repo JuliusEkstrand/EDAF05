@@ -24,25 +24,37 @@ class Graph:
         print(self.graph)
 
     def BFS(self, s, t):
-        visited = []
         # visited = set()
-        que = deque(self.graph[s])
-        que.append(s)
-        visited.append(s)
-        # dist = {s:0}
-        if s == t:
-            return "Impossible"
-        
+        # # que = deque(self.graph[s])
+        # que = deque([s])
+
+        # que.append(s)
+        # visited.append(s)
+        # # dist = {s:0}
+        # level = 0
+        # while que:
+        #     v = que.popleft()
+        #     for w in self.graph[v]:
+        #         if w not in visited:
+        #             visited.add(w)
+        #             # dist[w] = dist[v] + 1
+        #             que.append(w)
+        #             if w == t:
+        #                 return level
+        #     level += 1
+        # return "Impossible" 
+        visited = set()
+        que = deque([s])
         level = 0
         while que:
-            v = que.popleft()
-            for w in self.graph[v]:
+            for _ in range(len(que)):
+                w = que.popleft()
                 if w not in visited:
-                    visited.append(w)
-                    # visited.add(w)
-                    # dist[w] = dist[v] + 1
-                    que.append(w)
+                    visited.add(w)
                     if w == t:
                         return level
+                    for adj in self.graph[w]:
+                        que.append(adj)
             level += 1
-        return "Impossible" 
+        
+        return "Impossible"
